@@ -1,0 +1,61 @@
+#:kivy 1.0.9
+
+<SevenSegment>:
+    size: 50, 50
+    tes: top_bar
+    RelativeLayout:
+        id: top_bar
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 50, 300
+                size:(100, 50)
+    RelativeLayout:
+        id: top_right_bar
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 150, 200
+                size:(50, 100)
+    RelativeLayout:
+        id: top_left_bar
+        canvas.before:
+            Color:
+                rgba: 0,0,1,1
+            Rectangle:
+                pos: 0, 200
+                size:(50, 100)
+    RelativeLayout:
+        id: middle_bar
+        canvas.before:
+            Color:
+                rgba: 0,0,1,1
+            Rectangle:
+                pos: 50, 150
+                size:(100, 50)
+    RelativeLayout:
+        id: bottom_right_bar
+        canvas.before:
+            Color:
+                rgba: 0,0,1,1
+            Rectangle:
+                pos: 150, 50
+                size:(50, 100)
+    RelativeLayout:
+        id: bottom_left_bar
+        canvas.before:
+            Color:
+                rgba: 0,0,1,1
+            Rectangle:
+                pos: 0, 50
+                size:(50, 100)
+    RelativeLayout:
+        id: bottom_bar
+        canvas.before:
+            Color:
+                rgba: 0,0,1,1
+            Rectangle:
+                pos: 50, 0
+                size:(100, 50)
