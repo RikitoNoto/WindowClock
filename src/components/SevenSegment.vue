@@ -1,33 +1,43 @@
 <script setup lang="ts">
 
+const props = defineProps({
+  number: {
+    type: Number,
+    required: true,
+  },
+  height: {
+    type: Number,
+    default: 350,
+  },
+  width: {
+    type: Number,
+    default: 200,
+  }
+});
 
-defineProps<{
-  display_number: string
-}>();
-
-const number_lighting: Map<string, {top: boolean,  top_left: boolean,  top_right: boolean,  middle: boolean,  bottom_left: boolean,   bottom_right: boolean, bottom: boolean}> = new Map([
-  ["1", { top: false,  top_left: false,  top_right: true,  middle: false,  bottom_left: false,   bottom_right: true, bottom: false}],
-  ["2", { top: true,   top_left: false,  top_right: true,  middle: true,  bottom_left: true,   bottom_right: false, bottom: true}],
-  ["3", { top: true,  top_left: false,  top_right: true,  middle: true,  bottom_left: false,   bottom_right: true, bottom: true}],
-  ["4", { top: false,  top_left: true,  top_right: true,  middle: true,  bottom_left: false,   bottom_right: true, bottom: false}],
-  ["5", { top: true,  top_left: true,  top_right: false,  middle: true,  bottom_left: false,   bottom_right: true, bottom: true}],
-  ["6", { top: true,  top_left: true,  top_right: false,  middle: true,  bottom_left: true,   bottom_right: true, bottom: true}],
-  ["7", { top: true,  top_left: false,  top_right: true,  middle: false,  bottom_left: false,   bottom_right: true, bottom: false}],
-  ["8", { top: true,  top_left: true,  top_right: true,  middle: true,  bottom_left: true,   bottom_right: true, bottom: true}],
-  ["9", { top: true,  top_left: true,  top_right: true,  middle: true,  bottom_left: false,   bottom_right: true, bottom: true}],
-  ["0", { top: true,  top_left: true,  top_right: true,  middle: false,  bottom_left: true,   bottom_right: true, bottom: true}],
+const number_lighting: Map<number, {top: boolean,  top_left: boolean,  top_right: boolean,  middle: boolean,  bottom_left: boolean,   bottom_right: boolean, bottom: boolean}> = new Map([
+  [1, { top: false,  top_left: false,  top_right: true,  middle: false,  bottom_left: false,   bottom_right: true, bottom: false}],
+  [2, { top: true,   top_left: false,  top_right: true,  middle: true,  bottom_left: true,   bottom_right: false, bottom: true}],
+  [3, { top: true,  top_left: false,  top_right: true,  middle: true,  bottom_left: false,   bottom_right: true, bottom: true}],
+  [4, { top: false,  top_left: true,  top_right: true,  middle: true,  bottom_left: false,   bottom_right: true, bottom: false}],
+  [5, { top: true,  top_left: true,  top_right: false,  middle: true,  bottom_left: false,   bottom_right: true, bottom: true}],
+  [6, { top: true,  top_left: true,  top_right: false,  middle: true,  bottom_left: true,   bottom_right: true, bottom: true}],
+  [7, { top: true,  top_left: false,  top_right: true,  middle: false,  bottom_left: false,   bottom_right: true, bottom: false}],
+  [8, { top: true,  top_left: true,  top_right: true,  middle: true,  bottom_left: true,   bottom_right: true, bottom: true}],
+  [9, { top: true,  top_left: true,  top_right: true,  middle: true,  bottom_left: false,   bottom_right: true, bottom: true}],
+  [0, { top: true,  top_left: true,  top_right: true,  middle: false,  bottom_left: true,   bottom_right: true, bottom: true}],
 ]);
 </script>
 
 <template>
   <div class="seven-segment">
-    <div class="seven-segment__bar seven-segment__bar__top seven-segment__bar__horizontal" :class="{'seven-segment__bar__active': number_lighting.get(display_number)?.top}"></div>
-    <div class="seven-segment__bar seven-segment__bar__top-left seven-segment__bar__vertical" :class="{'seven-segment__bar__active': number_lighting.get(display_number)?.top_left}"></div>
-    <div class="seven-segment__bar seven-segment__bar__top-right seven-segment__bar__vertical" :class="{'seven-segment__bar__active': number_lighting.get(display_number)?.top_right}"></div>
-    <div class="seven-segment__bar seven-segment__bar__middle seven-segment__bar__horizontal" :class="{'seven-segment__bar__active': number_lighting.get(display_number)?.middle}"></div>
-    <div class="seven-segment__bar seven-segment__bar__bottom-left seven-segment__bar__vertical" :class="{'seven-segment__bar__active': number_lighting.get(display_number)?.bottom_left}"></div>
-    <div class="seven-segment__bar seven-segment__bar__bottom-right seven-segment__bar__vertical" :class="{'seven-segment__bar__active': number_lighting.get(display_number)?.bottom_right}"></div>
-    <div class="seven-segment__bar seven-segment__bar__bottom seven-segment__bar__horizontal" :class="{'seven-segment__bar__active': number_lighting.get(display_number)?.bottom}"></div>
+    <div class="seven-segment__bar seven-segment__bar__top seven-segment__bar__horizontal" :class="{'seven-segment__bar__active': number_lighting.get(props.number)?.top}"></div>
+    <div class="seven-segment__bar seven-segment__bar__top-left seven-segment__bar__vertical" :class="{'seven-segment__bar__active': number_lighting.get(props.number)?.top_left}"></div>
+    <div class="seven-segment__bar seven-segment__bar__top-right seven-segment__bar__vertical" :class="{'seven-segment__bar__active': number_lighting.get(props.number)?.top_right}"></div>
+    <div class="seven-segment__bar seven-segment__bar__middle seven-segment__bar__horizontal" :class="{'seven-segment__bar__active': number_lighting.get(props.number)?.middle}"></div>
+    <div class="seven-segment__bar seven-segment__bar__bottom-left seven-segment__bar__vertical" :class="{'seven-segment__bar__active': number_lighting.get(props.number)?.bottom_left}"></div>
+    <div class="seven-segment__bar seven-segment__bar__bottom-right seven-segment__bar__vertical" :class="{'seven-segment__bar__active': number_lighting.get(props.number)?.bottom_right}"></div>
+    <div class="seven-segment__bar seven-segment__bar__bottom seven-segment__bar__horizontal" :class="{'seven-segment__bar__active': number_lighting.get(props.number)?.bottom}"></div>
   </div>
 </template>
 
@@ -38,8 +48,9 @@ $color: red;
   --color: #{$color};
   position: relative;
 
-  --height: 350;
-  --width: 200;
+  /* --height: 350; */
+  --height: v-bind(props.height);
+  --width: v-bind(props.width);
   --bar_size_l: calc(var(--height) / 3.5); /* bar size long */
   --bar_size_s: calc(var(--width) / 4);    /* bar size short */
   --bar_size_l_px: calc(1px * var(--bar_size_l));
