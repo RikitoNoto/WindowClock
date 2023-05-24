@@ -19,7 +19,7 @@ const char_width: number = char_height * 4/7;
   <div class="display">
     <SevenSegment class="display__char" :number=1 :height=char_height :width=char_width></SevenSegment>
     <SevenSegment class="display__char" :number=1 :height=char_height :width=char_width></SevenSegment>
-    <Colon class="display__char" :height=char_height></Colon>
+    <Colon class="display__char" :height=char_height :turn_on_colon=true></Colon>
     <SevenSegment class="display__char" :number=1 :height=char_height :width=char_width></SevenSegment>
     <SevenSegment class="display__char" :number=1 :height=char_height :width=char_width></SevenSegment>
   </div>
