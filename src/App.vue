@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import Display from './components/Display.vue';
 import { ref } from 'vue'
+import { appWindow } from '@tauri-apps/api/window';
 
 
 const hour = ref(0);
 const minute = ref(0);
+appWindow.setFullscreen(true);
 
 setInterval(() => {
     const current = new Date();
