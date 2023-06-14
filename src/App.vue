@@ -16,7 +16,7 @@ setInterval(() => {
 </script>
 
 <template>
-  <Display :scale=1.5 :hour=hour :minute=minute></Display>
+  <Display :scale=1.5 v-model:hour="hour" v-model:minute="minute"></Display>
 </template>
 
 <style scoped>
