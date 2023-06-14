@@ -11,7 +11,9 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "window": {
+        "setFullscreen": true
+      }
     },
     "bundle": {
       "active": true,
