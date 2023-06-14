@@ -58,6 +58,8 @@ const char_width: number = char_height * 4/7;
 .display {
   &__char {
     display: inline-block;
+    margin-left: 1vw;
+    margin-right: 1vw;
   }
 }
 </style>
