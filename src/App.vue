@@ -8,6 +8,13 @@ const option_key = "Escape";
 const hour = ref(0);
 const minute = ref(0);
 const display_modal = ref(false);
+
+enum ClockMode {
+  Analog,
+  Degital,
+}
+const clock_mode = ref(ClockMode.Degital);
+
 const closeModal = () => {
   display_modal.value = false;
 }
@@ -19,6 +26,7 @@ setInterval(() => {
     const current = new Date();
     hour.value = current.getHours();
     minute.value = current.getMinutes();
+    console.log(clock_mode.value);
   },
   100
 );
@@ -33,7 +41,7 @@ onMounted(()=>{
 </script>
 
 <template>
-  <Display :scale=1.5 v-model:hour="hour" v-model:minute="minute"></Display>
+  <Display v-if="clock_mode==ClockMode.Degital" :scale=1.5 v-model:hour="hour" v-model:minute="minute"></Display>
 
   <div id="modal" class="modal" :class="{'is-active': display_modal}">
     <div class="modal-background" v-on:click="closeModal"></div>
@@ -43,6 +51,17 @@ onMounted(()=>{
         <button class="delete" aria-label="close" v-on:click="closeModal"></button>
       </header>
       <section class="modal-card-body">
+        <div class="control">
+          <label class="preference__label">Mode:</label>
+          <label class="radio">
+            <input type="radio" name="mode" :value="ClockMode.Degital" v-model="clock_mode">
+            Degital
+          </label>
+          <label class="radio">
+            <input type="radio" name="mode" :value="ClockMode.Analog" v-model="clock_mode">
+            Analog
+          </label>
+        </div>
       </section>
       <footer class="modal-card-foot">
       </footer>
@@ -52,4 +71,8 @@ onMounted(()=>{
 
 <style scoped lang="scss">
 @import "bulma/bulma.sass";
+.preference__label {
+  font-size: 1.2rem;
+  margin-right: 2rem;
+}
 </style>
