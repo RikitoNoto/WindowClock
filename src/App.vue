@@ -44,36 +44,47 @@ onMounted(()=>{
 </script>
 
 <template>
-  <DigitalClock v-if="clock_mode==ClockMode.Degital" :scale=1.5 v-model:hour="hour" v-model:minute="minute"></DigitalClock>
-  <AnalogClock v-if="clock_mode==ClockMode.Analog" v-model:hour="hour" v-model:minute="minute" v-model:sec="sec"></AnalogClock>
-  <div id="modal" class="modal" :class="{'is-active': display_modal}">
-    <div class="modal-background" v-on:click="closeModal"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Preference</p>
-        <button class="delete" aria-label="close" v-on:click="closeModal"></button>
-      </header>
-      <section class="modal-card-body">
-        <div class="control">
-          <label class="preference__label">Mode:</label>
-          <label class="radio">
-            <input type="radio" name="mode" :value="ClockMode.Degital" v-model="clock_mode">
-            Degital
-          </label>
-          <label class="radio">
-            <input type="radio" name="mode" :value="ClockMode.Analog" v-model="clock_mode">
-            Analog
-          </label>
-        </div>
-      </section>
-      <footer class="modal-card-foot">
-      </footer>
+  <div class="app">
+    <DigitalClock v-if="clock_mode==ClockMode.Degital" :scale=1.5 v-model:hour="hour" v-model:minute="minute"></DigitalClock>
+    <AnalogClock v-if="clock_mode==ClockMode.Analog" v-model:hour="hour" v-model:minute="minute" v-model:sec="sec"></AnalogClock>
+    <div id="modal" class="modal" :class="{'is-active': display_modal}">
+      <div class="modal-background" v-on:click="closeModal"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Preference</p>
+          <button class="delete" aria-label="close" v-on:click="closeModal"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="control">
+            <label class="preference__label">Mode:</label>
+            <label class="radio">
+              <input type="radio" name="mode" :value="ClockMode.Degital" v-model="clock_mode">
+              Degital
+            </label>
+            <label class="radio">
+              <input type="radio" name="mode" :value="ClockMode.Analog" v-model="clock_mode">
+              Analog
+            </label>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+        </footer>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "bulma/bulma.sass";
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: red;
+}
+
 .preference__label {
   font-size: 1.2rem;
   margin-right: 2rem;
