@@ -8,6 +8,7 @@ const option_key = "Escape";
 
 const hour = ref(0);
 const minute = ref(0);
+const sec = ref(0);
 const display_modal = ref(false);
 
 enum ClockMode {
@@ -25,11 +26,12 @@ appWindow.setFullscreen(true);
 
 setInterval(() => {
     const current = new Date();
+
     hour.value = current.getHours();
     minute.value = current.getMinutes();
-    console.log(clock_mode.value);
+    sec.value = current.getSeconds() + (current.getMilliseconds() / 1000);
   },
-  100
+  10
 );
 
 onMounted(()=>{
@@ -43,7 +45,7 @@ onMounted(()=>{
 
 <template>
   <DigitalClock v-if="clock_mode==ClockMode.Degital" :scale=1.5 v-model:hour="hour" v-model:minute="minute"></DigitalClock>
-  <AnalogClock v-if="clock_mode==ClockMode.Analog"></AnalogClock>
+  <AnalogClock v-if="clock_mode==ClockMode.Analog" v-model:hour="hour" v-model:minute="minute" v-model:sec="sec"></AnalogClock>
   <div id="modal" class="modal" :class="{'is-active': display_modal}">
     <div class="modal-background" v-on:click="closeModal"></div>
     <div class="modal-card">

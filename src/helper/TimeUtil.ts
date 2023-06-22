@@ -14,4 +14,18 @@ export default class TimeUtil {
       return Number(value);
     });
   }
+
+  public static hourToDeg(hour: number): number{
+    return hour / 12 * 360;
+  }
+
+  public static minuteToDeg(minute: number): number{
+    return minute / 60 * 360;
+
+  }
+
+  public static secToDeg(sec: number): number{
+    return sec / 60 * 360;
+
+  }
 }
