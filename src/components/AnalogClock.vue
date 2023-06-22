@@ -1,14 +1,61 @@
 <script setup lang="ts">
 import Hand from './Hand.vue';
+import TimeUtil from '../helper/TimeUtil';
+import { computed } from 'vue';
+
+const props = defineProps({
+  hour: {
+    type: Number,
+    default: 0,
+  },
+  minute: {
+    type: Number,
+    default: 0,
+  },
+  sec: {
+    type: Number,
+    default: 0,
+  },
+});
+
+const emits = defineEmits(["update:hour", "update:minute", "update:sec"]);
+
+const hour = computed({
+  get() {
+    return TimeUtil.hourToDeg(props.hour);
+  },
+  set(value) {
+    emits("update:hour", value);
+  }
+});
+
+const minute = computed({
+  get() {
+    return TimeUtil.minuteToDeg(props.minute);
+  },
+  set(value) {
+    emits("update:minute", value);
+  }
+});
+
+const sec = computed({
+  get() {
+    return TimeUtil.secToDeg(props.sec);
+  },
+  set(value) {
+    emits("update:sec", value);
+  }
+});
+
 </script>
 
 <template>
   <div class="analog_clock">
     <img src="../assets/clock.png" class="analog_clock__compass"/>
     <div class="analog_clock__center_circle"></div>
-    <Hand class="analog_clock__hand_hour" :height="500" :width="250" :weight="25" :rotate="0" color="#3650FF"></Hand>
-    <Hand class="analog_clock__hand_min" :height="700" :width="250" :weight="25" :rotate="0" color="#A6FF69"></Hand>
-    <Hand class="analog_clock__hand_sec" :height="700" :width="250" :weight="10" :rotate="0" color="coral"></Hand>
+    <Hand class="analog_clock__hand_hour" :height="500" :width="250" :weight="25" :rotate="hour" color="#3650FF"></Hand>
+    <Hand class="analog_clock__hand_min" :height="700" :width="250" :weight="25" :rotate="minute" color="#A6FF69"></Hand>
+    <Hand class="analog_clock__hand_sec" :height="700" :width="250" :weight="10" :rotate="sec" color="coral"></Hand>
   </div>
 </template>
 
