@@ -1,0 +1,62 @@
+<script setup lang="ts">
+const props = defineProps({
+  height: {
+    type: Number,
+    default: 0,
+  },
+  width: {
+    type: Number,
+    default: 0,
+  },
+  weight: {
+    type: Number,
+    default: 0,
+  },
+  rotate: {
+    type: Number,
+    default: 0,
+  },
+  color: {
+    type: String,
+    default: "black",
+  }
+});
+</script>
+
+<template>
+  <div class="hand">
+    <div class="hand__dest">
+    </div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+.hand {
+  --hand_height: v-bind(`${props.height}px`);
+  --hand_width: v-bind(`${props.width}px`);
+  --hand_weight: v-bind(`${props.weight}px`);
+  --dest_rotate: v-bind(`${props.rotate}deg`);
+  --hand_color: v-bind(props.color);
+
+  width: var(--hand_width);
+  height: var(--hand_height);
+
+  &__dest {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 50%;
+    width: var(--hand_width);
+    height: var(--hand_height);
+    rotate: var(--dest_rotate);
+    &::before{
+      content: '';
+      position: absolute;
+      width: var(--hand_weight);
+      height: calc(var(--hand_height) / 2);
+      background: var(--hand_color);
+      border-radius: calc(var(--hand_weight) / 2);
+    }
+  }
+}
+</style>

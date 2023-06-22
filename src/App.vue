@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Display from './components/Display.vue';
+import DigitalClock from './components/DigitalClock.vue';
+import AnalogClock from './components/AnalogClock.vue';
 import { onMounted, ref } from 'vue'
 import { appWindow } from '@tauri-apps/api/window';
 
@@ -13,7 +14,7 @@ enum ClockMode {
   Analog,
   Degital,
 }
-const clock_mode = ref(ClockMode.Degital);
+const clock_mode = ref(ClockMode.Analog);
 
 const closeModal = () => {
   display_modal.value = false;
@@ -41,8 +42,8 @@ onMounted(()=>{
 </script>
 
 <template>
-  <Display v-if="clock_mode==ClockMode.Degital" :scale=1.5 v-model:hour="hour" v-model:minute="minute"></Display>
-
+  <DigitalClock v-if="clock_mode==ClockMode.Degital" :scale=1.5 v-model:hour="hour" v-model:minute="minute"></DigitalClock>
+  <AnalogClock v-if="clock_mode==ClockMode.Analog"></AnalogClock>
   <div id="modal" class="modal" :class="{'is-active': display_modal}">
     <div class="modal-background" v-on:click="closeModal"></div>
     <div class="modal-card">
