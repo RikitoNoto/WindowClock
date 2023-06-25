@@ -82,7 +82,7 @@ onMounted(()=>{
   width: 100vw;
   margin: 0;
   padding: 0;
-  background-color: red;
+  background-color: dimgray;
 }
 
 .preference__label {
