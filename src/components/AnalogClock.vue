@@ -22,7 +22,7 @@ const emits = defineEmits(["update:hour", "update:minute", "update:sec"]);
 
 const hour = computed({
   get() {
-    return TimeUtil.hourToDeg(props.hour);
+    return TimeUtil.hourToDeg(props.hour, props.minute, props.sec);
   },
   set(value) {
     emits("update:hour", value);
@@ -31,7 +31,7 @@ const hour = computed({
 
 const minute = computed({
   get() {
-    return TimeUtil.minuteToDeg(props.minute);
+    return TimeUtil.minuteToDeg(props.minute, props.sec);
   },
   set(value) {
     emits("update:minute", value);

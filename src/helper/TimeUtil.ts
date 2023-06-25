@@ -15,17 +15,17 @@ export default class TimeUtil {
     });
   }
 
-  public static hourToDeg(hour: number): number{
-    return hour / 12 * 360;
+  public static hourToDeg(hour: number, minute: number, sec: number, base = 360): number{
+    return hour / 12 * base + TimeUtil.minuteToDeg(minute, sec, base * 1/12);
   }
 
-  public static minuteToDeg(minute: number): number{
-    return minute / 60 * 360;
+  public static minuteToDeg(minute: number, sec: number, base = 360): number{
+    return minute / 60 * base + TimeUtil.secToDeg(sec, base * 1/60);
 
   }
 
-  public static secToDeg(sec: number): number{
-    return sec / 60 * 360;
+  public static secToDeg(sec: number, base = 360): number{
+    return sec / 60 * base;
 
   }
 }
