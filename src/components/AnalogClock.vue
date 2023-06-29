@@ -47,14 +47,32 @@ const sec = computed({
   }
 });
 
+const HOUR_HAND_SIZE = {
+  height: "50%",
+  width: "1%",
+  weight: "1.8rem",
+};
+
+const MINUTE_HAND_SIZE = {
+  height: "75%",
+  width: "1%",
+  weight: "1.8rem",
+};
+
+const SECOND_HAND_SIZE = {
+  height: "80%",
+  width: "1%",
+  weight: "1rem",
+};
+
 </script>
 
 <template>
   <div class="analog_clock analog_clock__compass">
     <div class="analog_clock__center_circle"></div>
-    <Hand class="analog_clock__hand_hour" :height="500" :width="250" :weight="25" :rotate="hour" color="#3650FF"></Hand>
-    <Hand class="analog_clock__hand_min" :height="700" :width="250" :weight="25" :rotate="minute" color="#A6FF69"></Hand>
-    <Hand class="analog_clock__hand_sec" :height="700" :width="250" :weight="10" :rotate="sec" color="coral"></Hand>
+    <Hand class="analog_clock__hand_hour" :height="HOUR_HAND_SIZE.height" :width="HOUR_HAND_SIZE.width" :weight="HOUR_HAND_SIZE.weight" :rotate="hour" color="#3650FF"></Hand>
+    <Hand class="analog_clock__hand_min" :height="MINUTE_HAND_SIZE.height" :width="MINUTE_HAND_SIZE.width" :weight="MINUTE_HAND_SIZE.weight" :rotate="minute" color="#A6FF69"></Hand>
+    <Hand class="analog_clock__hand_sec" :height="SECOND_HAND_SIZE.height" :width="SECOND_HAND_SIZE.width" :weight="SECOND_HAND_SIZE.weight" :rotate="sec" color="coral"></Hand>
   </div>
 </template>
 
@@ -100,24 +118,36 @@ const sec = computed({
     z-index: 20;
   }
 
+  --hour_hand_height: v-bind(HOUR_HAND_SIZE.height);
+  --hour_hand_width: v-bind(HOUR_HAND_SIZE.width);
+  --hour_hand_weight: v-bind(HOUR_HAND_SIZE.weight);
+
+  --minute_hand_height: v-bind(MINUTE_HAND_SIZE.height);
+  --minute_hand_width: v-bind(MINUTE_HAND_SIZE.width);
+  --minute_hand_weight: v-bind(MINUTE_HAND_SIZE.weight);
+
+  --second_hand_height: v-bind(SECOND_HAND_SIZE.height);
+  --second_hand_width: v-bind(SECOND_HAND_SIZE.width);
+  --second_hand_weight: v-bind(SECOND_HAND_SIZE.weight);
+
   &__hand_hour {
     position:absolute;
-    top: calc(50% - 500px / 2);
-    left: calc(50% - 250px / 2);
+    top: calc(50% - var(--hour_hand_height) / 2);
+    left: calc(50% - var(--hour_hand_width) / 2);
     z-index: 3;
   }
 
   &__hand_min {
     position:absolute;
-    top: calc(50% - 700px / 2);
-    left: calc(50% - 250px / 2);
+    top: calc(50% - var(--minute_hand_height) / 2);
+    left: calc(50% - var(--minute_hand_width) / 2);
     z-index: 2;
   }
 
   &__hand_sec {
     position:absolute;
-    top: calc(50% - 700px / 2);
-    left: calc(50% - 250px / 2);
+    top: calc(50% - var(--second_hand_height) / 2);
+    left: calc(50% - var(--second_hand_width) / 2);
     z-index: 4;
   }
 }
