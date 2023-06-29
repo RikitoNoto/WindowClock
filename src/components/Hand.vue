@@ -1,15 +1,15 @@
 <script setup lang="ts">
 const props = defineProps({
   height: {
-    type: Number,
+    type: String,
     default: 0,
   },
   width: {
-    type: Number,
+    type: String,
     default: 0,
   },
   weight: {
-    type: Number,
+    type: String,
     default: 0,
   },
   rotate: {
@@ -32,9 +32,9 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .hand {
-  --hand_height: v-bind(`${props.height}px`);
-  --hand_width: v-bind(`${props.width}px`);
-  --hand_weight: v-bind(`${props.weight}px`);
+  --hand_height: v-bind(props.height);
+  --hand_width: v-bind(props.width);
+  --hand_weight: v-bind(props.weight);
   --dest_rotate: v-bind(`${props.rotate}deg`);
   --hand_color: v-bind(props.color);
 
@@ -46,14 +46,14 @@ const props = defineProps({
     justify-content: center;
     position: absolute;
     border-radius: 50%;
-    width: var(--hand_width);
-    height: var(--hand_height);
+    width: 100%;
+    height: 100%;
     rotate: var(--dest_rotate);
     &::before{
       content: '';
       position: absolute;
       width: var(--hand_weight);
-      height: calc(var(--hand_height) / 2);
+      height: 50%;
       background: var(--hand_color);
       border-radius: calc(var(--hand_weight) / 2);
     }
